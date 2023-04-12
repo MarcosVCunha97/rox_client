@@ -1,5 +1,5 @@
 
-import 'package:rox_client/models/rox_client_options.dart';
+import 'package:rox_client/src/models/rox_client_options.dart';
 
 abstract class RoxClient {
    Future<dynamic> get(

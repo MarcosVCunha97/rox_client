@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:rox_client/models/rox_client_options.dart';
+import 'package:rox_client/src/models/rox_client_options.dart';
 import 'package:rox_client/src/rox_client.dart';
 
 // const _defaultConnectTimeout = Duration.millisecondsPerMinute;
