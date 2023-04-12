@@ -3,9 +3,9 @@ import 'package:rox_client/src/models/rox_client_options.dart';
 import 'package:rox_client/src/dio_client.dart';
 import 'package:rox_client/src/rox_client.dart';
 
-class Auth implements RoxClient {
-  static Auth? _instance;
-  Auth._internal(
+class AuthClient implements RoxClient {
+  static AuthClient? _instance;
+  AuthClient._internal(
     this.getNewTokenUrl,
     this.getAccessToken,
     this.getRefreshToken,
@@ -20,7 +20,7 @@ class Auth implements RoxClient {
   final String baseUrl;
   static const Duration defaultTimeout = Duration(milliseconds: 5000);
 
-  static Auth get instance {
+  static AuthClient get instance {
     if (_instance == null) {
       throw Exception('Auth não foi inicializado');
     }
@@ -36,7 +36,7 @@ class Auth implements RoxClient {
     required String baseUrl,
     int maxRetry = 3,
   }) {
-    _instance = Auth._internal(
+    _instance = AuthClient._internal(
       getNewTokenUrl,
       getAccessToken,
       getRefreshToken,
