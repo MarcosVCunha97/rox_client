@@ -14,4 +14,3 @@ dev_dependencies:
   test: ^1.21.0
 dependencies:
   dio: ^5.1.1
-  freezed: ^2.3.2
