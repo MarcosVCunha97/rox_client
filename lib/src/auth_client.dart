@@ -109,7 +109,7 @@ class AuthClient implements RoxClient {
       var res = await dioClient.get(uri, options: options ?? await _getOptionsWithAccessToken(), queryParameters: queryParameters);
       return res;
     } on DioError catch (e) {
-      if (retry < maxRetry && e.response?.statusCode == 403) {
+      if (retry < maxRetry && (e.response?.statusCode == 403 || e.response?.statusCode == 401)) {
         await refreshToken();
         return get(uri, retry: retry + 1);
       } else {
@@ -132,7 +132,7 @@ class AuthClient implements RoxClient {
       var res = await dioClient.post(uri, data: data, options: options ?? await _getOptionsWithAccessToken());
       return res;
     } on DioError catch (e) {
-      if (retry < maxRetry && e.response?.statusCode == 403) {
+      if (retry < maxRetry && (e.response?.statusCode == 403 || e.response?.statusCode == 401)) {
         await refreshToken();
         return post(uri, data: data, retry: retry + 1);
       } else {
@@ -155,7 +155,7 @@ class AuthClient implements RoxClient {
       var res = await dioClient.put(uri, data: data, options: options ?? await _getOptionsWithAccessToken());
       return res;
     } on DioError catch (e) {
-      if (retry < maxRetry && e.response?.statusCode == 403) {
+      if (retry < maxRetry && (e.response?.statusCode == 403 || e.response?.statusCode == 401)) {
         await refreshToken();
         return put(uri, data: data, retry: retry + 1);
       } else {
@@ -186,7 +186,7 @@ class AuthClient implements RoxClient {
     try {
       return dioClient.delete(uri, data: data, options: options ?? await _getOptionsWithAccessToken());
     } on DioError catch (e) {
-      if (retry < maxRetry && e.response?.statusCode == 403) {
+      if (retry < maxRetry && (e.response?.statusCode == 403 || e.response?.statusCode == 401)) {
         await refreshToken();
         return delete(uri, data: data, retry: retry + 1);
       } else {
@@ -208,7 +208,7 @@ class AuthClient implements RoxClient {
     try {
       return dioClient.patch(uri, data: data, options: options ?? await _getOptionsWithAccessToken());
     } on DioError catch (e) {
-      if (retry < maxRetry && e.response?.statusCode == 403) {
+      if (retry < maxRetry && (e.response?.statusCode == 403 || e.response?.statusCode == 401)) {
         await refreshToken();
         return patch(uri, data: data, retry: retry + 1);
       } else {
