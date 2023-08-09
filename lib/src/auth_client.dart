@@ -34,6 +34,7 @@ class AuthClient implements RoxClient {
     required Future Function(String) setAccessToken,
     required Function onInvalidToken,
     required String baseUrl,
+    DioClient? dioClient,
     int maxRetry = 3,
   }) {
     _instance = AuthClient._internal(
@@ -42,7 +43,7 @@ class AuthClient implements RoxClient {
       getRefreshToken,
       setAccessToken,
       onInvalidToken,
-      DioClient(baseUrl, Dio()),
+      dioClient ?? DioClient(baseUrl, Dio()),
       baseUrl,
       maxRetry,
     );
